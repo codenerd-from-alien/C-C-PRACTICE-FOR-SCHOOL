@@ -1,33 +1,36 @@
 #include <iostream>
-#include <cstring> // <- c++¿¡¼­ ¹®ÀÚ¿­À» »ç¿ëÇÏ±â À§ÇØ¼­ cstring
+#include <cstring> // <- c++ì—ì„œ ë¬¸ìì—´ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ cstring
+#define _CRT_SECURE_NO_WARNINGS
 using namespace std;
 
-// ¹®ÀÚ¿­ »ç¿ë ¹æ½ÄÀº c¾ğ¾î¿Í ºñ½ÁÇÏ°í stringÇüÀ» »ç¿ëÇØ¼­ »ç¿ë°¡´É
+// ë¬¸ìì—´ ì‚¬ìš© ë°©ì‹ì€ cì–¸ì–´ì™€ ë¹„ìŠ·í•˜ê³  stringí˜•ì„ ì‚¬ìš©í•´ì„œ ì‚¬ìš©ê°€ëŠ¥
 void another_way_to_use_string();
 void learn_struct();
 void pointer();
-
+void dynamic_struct();
 int main() {
 	const int Size = 15;
 	char name1[Size];
-	char name2[Size] = "½Å³ª´Â C++ÄÚµù";
+	char name2[Size] = "ì‹ ë‚˜ëŠ” C++ì½”ë”©";
 
-	cout << "»õ·Î ¹è¿ì´Â" << name2;
-	cout << "ÀÌ ´ÙÀ½À¸·Î ¹è¿ï °ú¸ñÀÌ??\n";
+	cout << "ìƒˆë¡œ ë°°ìš°ëŠ”" << name2;
+	cout << "ì´ ë‹¤ìŒìœ¼ë¡œ ë°°ìš¸ ê³¼ëª©ì´??\n";
 
-	//cin >> name1; <- c++¿¡¼­ ÀÔ·ÂÀ» ÇÏ´Â ¹æ¹ı ÀÌ·¸°Ô ÇÏ¸é ¹è¿­Å©±â ¸¸Å­ ÀÌ·ÂÀÌ ¾ÈµÊ
-	cin.get(name1, Size); //º¯¼öÀÇ ¼ºÇÔ°ú ¹è¿­ ÀÚÃ¼ÀÇ Å©±â¸¦ ¾Ë·ÁÁà¾ßÇÔ
+	//cin >> name1; <- c++ì—ì„œ ì…ë ¥ì„ í•˜ëŠ” ë°©ë²• ì´ë ‡ê²Œ í•˜ë©´ ë°°ì—´í¬ê¸° ë§Œí¼ ì´ë ¥ì´ ì•ˆë¨
+	cin.get(name1, Size); //ë³€ìˆ˜ì˜ ì„±í•¨ê³¼ ë°°ì—´ ìì²´ì˜ í¬ê¸°ë¥¼ ì•Œë ¤ì¤˜ì•¼í•¨
 	
-	cout << "ÀÌ ´ÙÀ½À¸·Î ¹è¿ï °ú¸ñÀº" << " " << name1 << "ÀÔ´Ï´Ù.\n";
+	cout << "ì´ ë‹¤ìŒìœ¼ë¡œ ë°°ìš¸ ê³¼ëª©ì€" << " " << name1 << "ì…ë‹ˆë‹¤.\n";
 
-	cout << strlen(name1) << "<-name1 ÀÇ ±ÛÀÚ¼ö¸¦ Ç¥Çö ¹æ¹ı";
-	cout << sizeof(name1) << "¹ÙÀÌÆ® Å©±â ¾Ë·ÁÁÜ \n";
+	cout << strlen(name1) << "<-name1 ì˜ ê¸€ììˆ˜ë¥¼ í‘œí˜„ ë°©ë²•";
+	cout << sizeof(name1) << "ë°”ì´íŠ¸ í¬ê¸° ì•Œë ¤ì¤Œ \n";
 
 	cout << name2 << endl;
 	cout << " " << endl;
 	//another_way_to_use_string(); 
 	
 	//learn_struct();
+	//pointer();
+	dynamic_struct();
 }
 
 void another_way_to_use_string() {
@@ -40,7 +43,7 @@ void another_way_to_use_string() {
 
 
 }
-//C++´Â »ç¿ëÀÚ ÀÔ¸À´ë·Î ÀÚ·áÇü Á¤ÀÇ °¡´É 
+//C++ëŠ” ì‚¬ìš©ì ì…ë§›ëŒ€ë¡œ ìë£Œí˜• ì •ì˜ ê°€ëŠ¥ 
 void learn_struct() {
 	struct Mystruct
 	{
@@ -78,7 +81,37 @@ void learn_struct() {
 }
 
 void pointer() {
+	const int SIZE = 20;
+	char animal[SIZE];
+	char* ps;
 
+	cout << "ë™ë¬¼ ì´ë¦„ ì…ë ¥:\n";
+	cin >> animal;
+	/*ë™ì  êµ¬ì¡°ì²´*/
+	ps = new char[strlen(animal) + 1]; //ì…ë ¥í•œ ë¬¸ì ê¸¸ì´ì˜ ë°°ì—´ì—ì„œ +1í•œ ê°’ ë§Œí¼ ì…ë ¥ì´ ê°€ëŠ¥ í•˜ë„ë¡ í•¨ 
+	strcpy(ps, animal);
+
+	cout << "ì…ë ¥í•œ ë™ë¬¼ì˜ ì´ë¦„" << animal << "ì£¼ì†ŒëŠ” " << (int*)animal << "ì…ë‹ˆë‹¤." << endl;
+	cout << "ë³µì‚¬ëœ ë™ë¬¼ì˜ ì´ë¦„ì€" << ps << "ì£¼ì†ŒëŠ” " << (int*)ps << "ì…ë‹ˆë‹¤." << endl;
+	
+
+}
+
+//êµ¬ì¡°ì²´ë¥¼ ì„ ì–¸
+
+struct MyStruct {
+	char name[20];
+	int age;
+};
+void dynamic_struct() {
+	MyStruct* temp = new MyStruct;
+	cout << "ë‹¹ì‹ ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.\n";
+	cin >> temp->name;
+	cout << "ë‹¹ì‹ ì˜ ë‚˜ì´ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.\n";
+	cin >> temp->age;
+	cout << "ì•ˆë…•í•˜ì„¸ìš”!" << temp->name << "\n";
+	cout << "ë‹¹ì‹ ì€" << temp ->age << "ì‚´ ì •ë³´í™•ì¸\n";
+	delete temp;
 }
 
 
